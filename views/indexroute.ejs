@@ -5,11 +5,25 @@
 </head>
 <body>
     <h1>Quara Posts</h1>
+   
     <%for(let post of posts){%>
         <div class="post">
             <h3 class="user">@<%=post.username%> </h3>
             <h4 class="contenet"><%=post.content%></h4>
         </div>
+        <a href="http://localhost:8080/posts/<%=post.id %>">See in detail</a>
+        <br>
+        <a href="http://localhost:8080/posts/<%=post.id%>/edit">Edit</a>
+        <form method="POST" action="/posts/<%=post.id%>?_method=DELETE">
+            <button>DELETE POST</button>
+        </form>
     <%}%>
+    <br>
+    <hr>
+    <form method="GET" action="/posts/new">
+        <button>CREATE NEW POST</button>
+    </form>
 </body>
 </html>
+
+
