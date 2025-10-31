@@ -7,8 +7,6 @@ const path = require("path");
 const methodOverride = require('method-override');
 
 
-
-//giving new id to each post so thatw e can access it with the id --GET  /posts/:id
 const {v4:uuidv4}=require("uuid");
 
 app.use(express.urlencoded({ extended: true }));
@@ -57,7 +55,7 @@ app.post("/posts",(req, res) => {
 
 
 app.get("/posts/:id",(req,res)=>{
-    let {id}=req.params;   //cpmes from url
+    let {id}=req.params;   
     let post=posts.find((p)=>id===p.id);
     res.render("show.ejs",{post});
 });
@@ -69,19 +67,19 @@ app.get("/posts/:id/edit",(req,res)=>{
     res.render("edit.ejs",{post});
 })
 
-//update route
+
 app.patch("/posts/:id",(req,res)=>{
-    let {id}=req.params;  //comes from we input there in hoppscotch
-    let newContent=req.body.content;  //comes from url
+    let {id}=req.params;  
+    let newContent=req.body.content;  
     let post=posts.find((p)=>id===p.id);
     post.content=newContent;
     console.log(post);
     res.redirect("/posts");
 })
 
-app.delete("/posts/:id",(req,res)=>{   //posts/:id h to id yaha pass ho raha h to ek thrah s hum likh rahe h so it will be req.params
-    let {id}=req.params; //comes from we wrote 
-    posts=posts.filter((p)=>id!==p.id);  //new array filtered arrrat we put it name as posts as it as posts earlier
+app.delete("/posts/:id",(req,res)=>{   
+    let {id}=req.params; 
+    posts=posts.filter((p)=>id!==p.id);  
     res.redirect("/posts");
 })
 
